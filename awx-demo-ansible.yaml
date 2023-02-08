@@ -11,3 +11,4 @@
   - name: echo variable 1 on shell
     shell: "echo {{ variable_1 }}"
     no_log: True
+    ignore_errors: true
