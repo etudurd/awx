@@ -8,7 +8,11 @@
     debug:
       var: variable_1
 
-  - name: echo variable 1 on shell
-    shell: "echo {{ variable_1 }}"
-    no_log: False
+  - name: Lookup variable in Conjur
+    debug:
+      msg: "{{ variable_1 }}"
+
+#  - name: echo variable 1 on shell
+#    shell: "echo {{ variable_1 }}"
+#    no_log: False
     
