@@ -1,0 +1,30 @@
+
+pool:
+  name: 'default'
+
+steps:
+
+- task: secretBatchRetrievalConnector@1
+  displayName: Retrieving a secret from Conjur using a Service Connection
+  inputs:
+    ConjurService: 'ConjurCloudTudor'
+    secretsyml: './secrets.yml'
+
+- powershell: |
+    Write-Host "Secrets retrieved:"
+    Write-Host "SECRET1: $(SECRET1)"
+    Write-Host "SECRET2: $(SECRET2)"
+    Write-Host $env:SECRET2 
+    C:\Users\Administrator\Desktop\script.ps1 "$SECRET1"
+
+- bash: |
+    echo "Secrets retrieved:"
+    echo "Test"
+    echo "  SECRET1: $(SECRET1)"
+    echo "$(SECRET1)" | sed 's/./& /g'
+    echo "  SECRET2: $(SECRET2)"
+    echo "$(SECRET2)" | sed 's/./& /g'
+
+    #
+
+    
