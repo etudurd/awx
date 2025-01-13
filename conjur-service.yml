@@ -2,5 +2,5 @@ conjur:
   account: conjur
   appliance-url: https://emeadevops.secretsmgr.cyberark.cloud/api
   authn-login: host/data/tudor-spring
-  authn-api-key: hsd2n01ht12tq2dzm6543hs6rn73ttfxsx391cx9ra96bdr3955s9t
+  authn-api-key: TTTTREPLACE43hs6rn73ttfxsx391cx9ra96bdr3955s9t
   scan-all-values: true
