@@ -6,8 +6,8 @@
   hosts: localhost
   gather_facts: false
   vars:
-    ocp_api_host: "api.emeacluster.emea-devops-lab.cybr:6443"
-    ocp_token: "sha256~rQFD2-sDq4BeaQdSAH-uUyfAfMBAejaBukUwRAXqHE4"
+    ocp_api_host: "api.bsbs.bsbs:6443"
+    ocp_token: "FAKETOKENrQFD2-sDq4BeaQdSAH-uUyfAfMBAejaBukUwRAXqHE4"
     namespace: "kbc-jwt"  # replace this with the actual namespace
   tasks:
     - name: Get current user info from OCP API
