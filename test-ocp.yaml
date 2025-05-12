@@ -2,33 +2,38 @@
 #collections:
  # - name: kubernetes.core
   #ansible-galaxy collection install kubernetes.core
-- name: Get current OpenShift user
+- name: Get current OpenShift user and list pods
   hosts: localhost
   gather_facts: false
+  vars:
+    ocp_api_host: "api.emeacluster.emea-devops-lab.cybr:6443"
+    ocp_token: "sha256~rQFD2-sDq4BeaQdSAH-uUyfAfMBAejaBukUwRAXqHE4"
+    namespace: "your-namespace"  # replace this with the actual namespace
   tasks:
     - name: Get current user info from OCP API
       uri:
-        url: "https://api.emeacluster.emea-devops-lab.cybr:6443/apis/user.openshift.io/v1/users/~"
+        url: "https://{{ ocp_api_host }}/apis/user.openshift.io/v1/users/~"
         method: GET
         headers:
-          Authorization: "Bearer sha256~rQFD2-sDq4BeaQdSAH-uUyfAfMBAejaBukUwRAXqHE4"
+          Authorization: "Bearer {{ ocp_token }}"
         return_content: true
         validate_certs: false
       register: response
 
-    - debug:
+    - name: Debug current OpenShift user
+      debug:
         var: response.json
 
     - name: Get all pods in a namespace
-    kubernetes.core.k8s_info:
-      kind: Pod
-      namespace: "{{ namespace }}"
-      api_key: "{{ ocp_token }}"
-      host: "https://{{ ocp_api_host }}"
-      verify_ssl: no
-    register: pod_list
+      kubernetes.core.k8s_info:
+        kind: Pod
+        namespace: "{{ namespace }}"
+        api_key: "{{ ocp_token }}"
+        host: "https://{{ ocp_api_host }}"
+        verify_ssl: no
+      register: pod_list
 
     - name: Display pod names
-    debug:
-      msg: "{{ item.metadata.name }}"
-    loop: "{{ pod_list.resources }}"
+      debug:
+        msg: "{{ item.metadata.name }}"
+      loop: "{{ pod_list.resources }}"
