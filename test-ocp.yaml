@@ -8,7 +8,7 @@
         url: "https://api.emeacluster.emea-devops-lab.cybr:6443/apis/user.openshift.io/v1/users/~"
         method: GET
         headers:
-          Authorization: "Bearer {{ sha256~rQFD2-sDq4BeaQdSAH-uUyfAfMBAejaBukUwRAXqHE4 }}"
+          Authorization: "Bearer sha256~rQFD2-sDq4BeaQdSAH-uUyfAfMBAejaBukUwRAXqHE4"
         return_content: true
         validate_certs: false
       register: response
