@@ -1,0 +1,17 @@
+---
+- name: Get current OpenShift user
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Get current user info from OCP API
+      uri:
+        url: "https://api.emeacluster.emea-devops-lab.cybr:6443/apis/user.openshift.io/v1/users/~"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ sha256~rQFD2-sDq4BeaQdSAH-uUyfAfMBAejaBukUwRAXqHE4 }}"
+        return_content: true
+        validate_certs: false
+      register: response
+
+    - debug:
+        var: response.json
