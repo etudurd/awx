@@ -15,3 +15,17 @@
 
     - debug:
         var: response.json
+
+- name: Get all pods in a namespace
+  kubernetes.core.k8s_info:
+    kind: Pod
+    namespace: "{{ namespace }}"
+    api_key: "{{ ocp_token }}"
+    host: "https://{{ ocp_api_host }}"
+    verify_ssl: no
+  register: pod_list
+
+- name: Display pod names
+  debug:
+    msg: "{{ item.metadata.name }}"
+  loop: "{{ pod_list.resources }}"
