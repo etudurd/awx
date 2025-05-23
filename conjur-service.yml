@@ -1,6 +1,6 @@
 conjur:
   account: conjur
-  appliance-url: https://emeadevops.secretsmgr.cyberark.cloud/api
+  appliance-url: https://emead.secretsmgr.cyberark.cloud/api
   authn-login: host/data/tudor-spring
   authn-api-key: not43hs6rn73ttfxsx391cx9ra96bdr3955s9t
   scan-all-values: true
