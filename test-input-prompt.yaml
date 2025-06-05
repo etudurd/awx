@@ -1,0 +1,13 @@
+---
+- name: Example Prompt Playbook
+  hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: "secret_input"
+      prompt: "Enter your secret"
+      private: yes
+
+  tasks:
+    - name: Show secret
+      debug:
+        msg: "Secret is {{ secret_input }}"
